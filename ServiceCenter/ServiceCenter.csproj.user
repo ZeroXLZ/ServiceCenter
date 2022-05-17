@@ -1,10 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="AuthorizationF.cs">
+    <Compile Update="GUI\AppCreateF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="GUI\AppEditF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\AuthorizationF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ConfirmF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\MainFClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\MainFManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\MainFMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\OrderInfoF.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
