@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ServiceCenter.GUI;
 
 namespace ServiceCenter
 {
@@ -17,7 +18,7 @@ namespace ServiceCenter
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuthorizationF());
+            Application.Run(new OrderInfoF());
         }
     }
 }

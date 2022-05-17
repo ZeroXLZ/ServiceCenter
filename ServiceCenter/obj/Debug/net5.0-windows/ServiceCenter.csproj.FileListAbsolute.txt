@@ -7,7 +7,6 @@ D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\ref\Servic
 D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\ServiceCenter.pdb
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.csproj.AssemblyReference.cache
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.AuthorizationF.resources
-D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.Form1.resources
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.csproj.GenerateResource.cache
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GeneratedMSBuildEditorConfig.editorconfig
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.AssemblyInfoInputs.cache
@@ -17,3 +16,10 @@ D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCen
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ref\ServiceCenter.dll
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.pdb
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.genruntimeconfig.cache
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.AppCreateF.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.AppEditF.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.ConfirmF.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.MainFClient.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.MainFManager.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.MainFMaster.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.OrderInfoF.resources
