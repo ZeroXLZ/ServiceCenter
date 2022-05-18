@@ -128,6 +128,7 @@ namespace ServiceCenter.GUI
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(10, 313);
             this.label8.Name = "label8";
@@ -137,6 +138,7 @@ namespace ServiceCenter.GUI
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 464);
             this.label9.Name = "label9";
@@ -212,7 +214,7 @@ namespace ServiceCenter.GUI
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(187, 717);
+            this.button2.Location = new System.Drawing.Point(199, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 32);
             this.button2.TabIndex = 21;
@@ -224,7 +226,7 @@ namespace ServiceCenter.GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(514, 761);
+            this.ClientSize = new System.Drawing.Size(514, 632);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox7);
             this.Controls.Add(this.dataGridView1);
@@ -245,7 +247,7 @@ namespace ServiceCenter.GUI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "OrderInfoF";
-            this.Text = "OrderInfoF";
+            this.Text = "Информация о заказе";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
