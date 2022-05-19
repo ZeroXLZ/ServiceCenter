@@ -23,3 +23,4 @@ D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCen
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.MainFManager.resources
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.MainFMaster.resources
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.OrderInfoF.resources
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.Form1.resources
