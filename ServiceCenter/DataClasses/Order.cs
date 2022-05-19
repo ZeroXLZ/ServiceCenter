@@ -1,4 +1,6 @@
-﻿namespace ServiceCenter.DataClasses
+﻿using System.Collections.Generic;
+
+namespace ServiceCenter.DataClasses
 {
     class Order
     {
@@ -6,9 +8,9 @@
         public float cost;
         public string description;
         public Device device;
-        public Service[] services;
+        public List<Service> services;
 
-        public Order(int id, float cost, string description, Device device, Service[] services)
+        public Order(int id, float cost, string description, Device device, List<Service> services)
         {
             this.id = id;
             this.cost = cost;

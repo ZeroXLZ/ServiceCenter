@@ -1,13 +1,15 @@
-﻿namespace ServiceCenter.DataClasses
+﻿using System.Collections.Generic;
+
+namespace ServiceCenter.DataClasses
 {
     class Device
     {
         public int id;
         public string type;
         public string model;
-        public string[] components;
+        public List<string> components;
 
-        public Device(int id, string type, string model, string[] components)
+        public Device(int id, string type, string model, List<string> components)
         {
             this.id = id;
             this.type = type;

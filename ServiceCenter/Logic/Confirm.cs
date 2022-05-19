@@ -8,5 +8,16 @@ namespace ServiceCenter.Logic
 {
     class Confirm
     {
+        public bool confirm(string operation)
+        {
+            if (operation.Equals("yes"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
