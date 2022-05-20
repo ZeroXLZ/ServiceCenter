@@ -58,11 +58,34 @@ namespace ServiceCenter
         {
             if (radioButton1.Checked)
             {
-                new Logic.Authorization().authorize(richTextBox1.Text, richTextBox2.Text, radioButton1.Text);
+                bool auth = new Logic.Authorization().authorize(richTextBox1.Text, richTextBox2.Text);
+                if (auth)
+                {
+                    Close();
+                }
+                else
+                {
+                    label2.Visible = true;
+                }
             }
             else
             {
-                new Logic.Authorization().authorize(radioButton2.Text);
+                new Logic.Authorization().authorize();
+                Close();
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                richTextBox1.ReadOnly = true;
+                richTextBox2.ReadOnly = true;
+            }
+            else
+            {
+                richTextBox1.ReadOnly = false;
+                richTextBox2.ReadOnly = false;
             }
         }
     }

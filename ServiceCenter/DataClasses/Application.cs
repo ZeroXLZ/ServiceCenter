@@ -20,5 +20,10 @@ namespace ServiceCenter.DataClasses
             this.master = master;
             this.order = order;
         }
+
+        public Application()
+        {
+
+        }
     }
 }

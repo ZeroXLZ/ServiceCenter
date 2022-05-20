@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ServiceCenter.GUI;
 
 namespace ServiceCenter.GUI
 {
@@ -15,6 +16,13 @@ namespace ServiceCenter.GUI
         public MainFClient()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AppCreateF f = new();
+            f.Show();
+            Close();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ServiceCenter.Logic
 {
@@ -10,7 +11,7 @@ namespace ServiceCenter.Logic
     {
         public bool confirm(string operation)
         {
-            if (operation.Equals("yes"))
+            if(MessageBox.Show(operation, "Подтверждение", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 return true;
             }

@@ -32,8 +32,6 @@ namespace ServiceCenter.GUI
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.richTextBox10 = new System.Windows.Forms.RichTextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.richTextBox9 = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
@@ -41,6 +39,10 @@ namespace ServiceCenter.GUI
             this.button2 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
@@ -57,6 +59,7 @@ namespace ServiceCenter.GUI
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +71,8 @@ namespace ServiceCenter.GUI
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(146, 25);
             this.comboBox2.TabIndex = 77;
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
+            this.comboBox2.Click += new System.EventHandler(this.comboBox2_Click);
             // 
             // label13
             // 
@@ -81,31 +86,19 @@ namespace ServiceCenter.GUI
             // 
             // comboBox1
             // 
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "",
+            "Ноутбук",
+            "Монитор",
+            "ПК",
+            "Прочее"});
             this.comboBox1.Location = new System.Drawing.Point(11, 163);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(221, 25);
             this.comboBox1.TabIndex = 75;
-            // 
-            // richTextBox10
-            // 
-            this.richTextBox10.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.richTextBox10.Location = new System.Drawing.Point(325, 119);
-            this.richTextBox10.Name = "richTextBox10";
-            this.richTextBox10.Size = new System.Drawing.Size(146, 23);
-            this.richTextBox10.TabIndex = 74;
-            this.richTextBox10.Text = "";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(325, 96);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 21);
-            this.label12.TabIndex = 73;
-            this.label12.Text = "Дата создания";
             // 
             // richTextBox9
             // 
@@ -114,7 +107,7 @@ namespace ServiceCenter.GUI
             this.richTextBox9.Name = "richTextBox9";
             this.richTextBox9.Size = new System.Drawing.Size(146, 23);
             this.richTextBox9.TabIndex = 72;
-            this.richTextBox9.Text = "";
+            this.richTextBox9.Text = "Александрович";
             // 
             // label11
             // 
@@ -133,7 +126,7 @@ namespace ServiceCenter.GUI
             this.richTextBox8.Name = "richTextBox8";
             this.richTextBox8.Size = new System.Drawing.Size(146, 23);
             this.richTextBox8.TabIndex = 70;
-            this.richTextBox8.Text = "";
+            this.richTextBox8.Text = "Вадим";
             // 
             // label10
             // 
@@ -149,12 +142,13 @@ namespace ServiceCenter.GUI
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(203, 717);
+            this.button2.Location = new System.Drawing.Point(204, 715);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 32);
+            this.button2.Size = new System.Drawing.Size(133, 32);
             this.button2.TabIndex = 68;
-            this.button2.Text = "Принять заказ";
+            this.button2.Text = "Создать заявку";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // richTextBox7
             // 
@@ -163,19 +157,54 @@ namespace ServiceCenter.GUI
             this.richTextBox7.Name = "richTextBox7";
             this.richTextBox7.Size = new System.Drawing.Size(539, 133);
             this.richTextBox7.TabIndex = 67;
-            this.richTextBox7.Text = "";
+            this.richTextBox7.Text = "Старый ноутбук, нужно почистить и обновить.";
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.name,
+            this.description,
+            this.price});
             this.dataGridView1.Location = new System.Drawing.Point(12, 403);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(539, 150);
             this.dataGridView1.TabIndex = 66;
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Название";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // description
+            // 
+            this.description.HeaderText = "Описание";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Цена";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
             // 
             // richTextBox6
             // 
@@ -184,7 +213,7 @@ namespace ServiceCenter.GUI
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.Size = new System.Drawing.Size(203, 80);
             this.richTextBox6.TabIndex = 65;
-            this.richTextBox6.Text = "";
+            this.richTextBox6.Text = "i5 11400h, rtx 2070sp, ssd 512 red";
             // 
             // richTextBox5
             // 
@@ -193,7 +222,7 @@ namespace ServiceCenter.GUI
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.Size = new System.Drawing.Size(146, 23);
             this.richTextBox5.TabIndex = 64;
-            this.richTextBox5.Text = "";
+            this.richTextBox5.Text = "dexr 215";
             // 
             // richTextBox3
             // 
@@ -202,7 +231,7 @@ namespace ServiceCenter.GUI
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(146, 23);
             this.richTextBox3.TabIndex = 63;
-            this.richTextBox3.Text = "";
+            this.richTextBox3.Text = "8(950)000-00-00";
             // 
             // richTextBox2
             // 
@@ -211,7 +240,7 @@ namespace ServiceCenter.GUI
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(156, 23);
             this.richTextBox2.TabIndex = 62;
-            this.richTextBox2.Text = "";
+            this.richTextBox2.Text = "1212 011445";
             // 
             // richTextBox1
             // 
@@ -220,7 +249,7 @@ namespace ServiceCenter.GUI
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(146, 23);
             this.richTextBox1.TabIndex = 61;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = "Провоторов";
             // 
             // label9
             // 
@@ -249,9 +278,9 @@ namespace ServiceCenter.GUI
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(11, 229);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(203, 21);
+            this.label7.Size = new System.Drawing.Size(322, 21);
             this.label7.TabIndex = 58;
-            this.label7.Text = "Важные составные данные";
+            this.label7.Text = "Важные составные данные (через запятую)";
             // 
             // label6
             // 
@@ -318,9 +347,11 @@ namespace ServiceCenter.GUI
             this.richTextBox4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.richTextBox4.Location = new System.Drawing.Point(11, 733);
             this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.ReadOnly = true;
+            this.richTextBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.richTextBox4.Size = new System.Drawing.Size(100, 23);
             this.richTextBox4.TabIndex = 79;
-            this.richTextBox4.Text = "";
+            this.richTextBox4.Text = "руб.";
             // 
             // label16
             // 
@@ -332,18 +363,29 @@ namespace ServiceCenter.GUI
             this.label16.TabIndex = 78;
             this.label16.Text = "Стоимость";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(11, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(67, 23);
+            this.button1.TabIndex = 80;
+            this.button1.Text = "Назад";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AppCreateF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 761);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox4);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.richTextBox10);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.richTextBox9);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.richTextBox8);
@@ -378,8 +420,6 @@ namespace ServiceCenter.GUI
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RichTextBox richTextBox10;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.RichTextBox richTextBox9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RichTextBox richTextBox8;
@@ -403,5 +443,10 @@ namespace ServiceCenter.GUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox4;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.Button button1;
     }
 }

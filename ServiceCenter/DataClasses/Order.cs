@@ -18,5 +18,10 @@ namespace ServiceCenter.DataClasses
             this.device = device;
             this.services = services;
         }
+
+        public Order()
+        {
+
+        }
     }
 }

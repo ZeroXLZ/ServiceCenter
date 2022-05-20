@@ -15,6 +15,20 @@ namespace ServiceCenter.GUI
         public MainFMaster()
         {
             InitializeComponent();
+            DataTable tb = new();
+            //tb.Load()
+        }
+
+        public void setMaster(string master)
+        {
+            label1.Text += master;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AuthorizationF f = new();
+            f.Show();
+            Close();
         }
     }
 }

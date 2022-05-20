@@ -17,6 +17,11 @@
             this.patronymic = patronymic;
             this.phoneNum = phoneNum;
             this.passport = passport;
-        } 
+        }
+
+        public Client()
+        {
+
+        }
     }
 }

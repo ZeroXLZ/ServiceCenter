@@ -20,5 +20,10 @@ namespace ServiceCenter.DataClasses
             this.surname = surname;
             this.role = role;
         }
+
+        public Staff()
+        {
+
+        }
     }
 }

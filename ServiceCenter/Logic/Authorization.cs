@@ -3,18 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceCenter.DataClasses;
+using ServiceCenter.Database;
+using ServiceCenter.GUI;
 
 namespace ServiceCenter.Logic
 {
     class Authorization
     {
-        public void authorize(string login, string password, string type)
+        public bool authorize(string login, string password)
         {
-
+            DBClass db = new DBClass();
+            Staff staff = db.getStaff(login, password);
+            if (staff.id != -1)
+            {
+                if (staff.role.Equals("Manager"))
+                {
+                    MainFManager f = new();
+                    f.setManager(staff.surname + " " + staff.name);
+                    f.Show();
+                    return true;
+                }
+                else if (staff.role.Equals("Master"))
+                {
+                    MainFMaster f = new();
+                    f.setMaster(staff.surname + " " + staff.name);
+                    f.Show();
+                    return true;
+                }
+            }
+            return false;
         }
-        public void authorize(string type)
+        public void authorize()
         {
-
+            MainFClient f = new();
+            f.Show();
         }
     }
 }

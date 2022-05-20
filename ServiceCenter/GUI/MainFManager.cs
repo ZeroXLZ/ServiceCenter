@@ -16,5 +16,10 @@ namespace ServiceCenter.GUI
         {
             InitializeComponent();
         }
+
+        public void setManager(string manager)
+        {
+            label1.Text += manager;
+        }
     }
 }

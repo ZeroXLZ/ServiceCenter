@@ -16,5 +16,10 @@ namespace ServiceCenter.DataClasses
             this.model = model;
             this.components = components;
         }
+
+        public Device()
+        {
+
+        }
     }
 }
