@@ -19,15 +19,13 @@ namespace ServiceCenter.Logic
             {
                 if (staff.role.Equals("Manager"))
                 {
-                    MainFManager f = new();
-                    f.setManager(staff.surname + " " + staff.name);
+                    MainFManager f = new(staff);
                     f.Show();
                     return true;
                 }
                 else if (staff.role.Equals("Master"))
                 {
-                    MainFMaster f = new();
-                    f.setMaster(staff.surname + " " + staff.name);
+                    MainFMaster f = new(staff);
                     f.Show();
                     return true;
                 }

@@ -7,21 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ServiceCenter.Database;
+using ServiceCenter.DataClasses;
 
 namespace ServiceCenter.GUI
 {
     public partial class MainFMaster : Form
     {
-        public MainFMaster()
+        public Staff master;
+        public MainFMaster(Staff master)
         {
             InitializeComponent();
-            DataTable tb = new();
-            //tb.Load()
+            this.master = master;
+            setMaster();
+            DBClass db = new();
+            dataGridView1.DataSource = db.getActiveAppList();
+            label2.Text += dataGridView1.RowCount;
         }
 
-        public void setMaster(string master)
+        public void setMaster()
         {
-            label1.Text += master;
+            label1.Text += master.surname + " " + master.name;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -45,8 +45,6 @@ namespace ServiceCenter.GUI
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -60,6 +58,9 @@ namespace ServiceCenter.GUI
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -224,24 +225,6 @@ namespace ServiceCenter.GUI
             this.richTextBox5.TabIndex = 64;
             this.richTextBox5.Text = "dexr 215";
             // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.richTextBox3.Location = new System.Drawing.Point(11, 119);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(146, 23);
-            this.richTextBox3.TabIndex = 63;
-            this.richTextBox3.Text = "8(950)000-00-00";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.richTextBox2.Location = new System.Drawing.Point(163, 119);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(156, 23);
-            this.richTextBox2.TabIndex = 62;
-            this.richTextBox2.Text = "1212 011445";
-            // 
             // richTextBox1
             // 
             this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -258,9 +241,9 @@ namespace ServiceCenter.GUI
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label9.Location = new System.Drawing.Point(12, 555);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(159, 21);
+            this.label9.Size = new System.Drawing.Size(166, 21);
             this.label9.TabIndex = 60;
-            this.label9.Text = "Описание проблемы";
+            this.label9.Text = "Описание проблемы*";
             // 
             // label8
             // 
@@ -375,11 +358,43 @@ namespace ServiceCenter.GUI
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(343, 714);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(206, 30);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Все поля, кроме необязательных(*),\r\nдолжны быть заполнены";
+            this.label12.Visible = false;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(11, 119);
+            this.maskedTextBox1.Mask = "0(999)000-00-00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(146, 23);
+            this.maskedTextBox1.TabIndex = 82;
+            this.maskedTextBox1.Text = "89501100000";
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(163, 119);
+            this.maskedTextBox2.Mask = "0000 000000";
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(156, 23);
+            this.maskedTextBox2.TabIndex = 83;
+            this.maskedTextBox2.Text = "0000000000";
+            // 
             // AppCreateF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 761);
+            this.Controls.Add(this.maskedTextBox2);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox4);
             this.Controls.Add(this.label16);
@@ -395,8 +410,6 @@ namespace ServiceCenter.GUI
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.richTextBox6);
             this.Controls.Add(this.richTextBox5);
-            this.Controls.Add(this.richTextBox3);
-            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -429,8 +442,6 @@ namespace ServiceCenter.GUI
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.RichTextBox richTextBox6;
         private System.Windows.Forms.RichTextBox richTextBox5;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -448,5 +459,8 @@ namespace ServiceCenter.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
     }
 }

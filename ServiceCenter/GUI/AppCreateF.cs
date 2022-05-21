@@ -60,31 +60,34 @@ namespace ServiceCenter.GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы хотите создать заявку с внесёнными данными?", "Подтверждение", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (checkInputs())
             {
-                List<Service> services = new List<Service>();
-
-                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                if (MessageBox.Show("Вы хотите создать заявку с внесёнными данными?", "Подтверждение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Service item = new Service();
-                    item.id = int.Parse(dr.Cells["id"].Value.ToString());
-                    item.name = dr.Cells["name"].Value.ToString();
-                    item.description = dr.Cells["description"].Value.ToString();
-                    item.price = float.Parse(dr.Cells["price"].Value.ToString());
-                    services.Add(item);
+                    List<Service> services = new List<Service>();
+
+                    foreach (DataGridViewRow dr in dataGridView1.Rows)
+                    {
+                        Service item = new Service();
+                        item.id = int.Parse(dr.Cells["id"].Value.ToString());
+                        item.name = dr.Cells["name"].Value.ToString();
+                        item.description = dr.Cells["description"].Value.ToString();
+                        item.price = float.Parse(dr.Cells["price"].Value.ToString());
+                        services.Add(item);
+                    }
+
+                    AppCreate app = new();
+                    Client cl = new Client(-1, richTextBox8.Text, richTextBox1.Text, richTextBox9.Text, maskedTextBox1.Text, maskedTextBox2.Text);
+                    Device device = new Device(-1, comboBox1.SelectedItem.ToString(), richTextBox5.Text, richTextBox6.Text.Split(",").ToList<string>());
+                    Order order = new Order(-1, float.Parse(richTextBox4.Text.Replace(" руб.", "")), richTextBox7.Text, device, services);
+
+                    DataClasses.Application application = new(-1, DateTime.Now.Date, cl, "Создана", new Staff(), order);
+
+                    app.createApp(application);
+                    MainFClient f = new();
+                    f.Show();
+                    Close();
                 }
-
-                AppCreate app = new();
-                Client cl = new Client(-1, richTextBox8.Text, richTextBox1.Text, richTextBox9.Text, richTextBox3.Text, richTextBox2.Text);
-                Device device = new Device(-1, comboBox1.SelectedItem.ToString(), richTextBox5.Text, richTextBox6.Text.Split(",").ToList<string>());
-                Order order = new Order(-1, float.Parse(richTextBox4.Text.Replace(" руб.", "")), richTextBox7.Text, device, services);
-
-                DataClasses.Application application = new(-1, DateTime.Now.Date, cl, "Создана", new Staff(), order);
-
-                app.createApp(application);
-                MainFClient f = new();
-                f.Show();
-                Close();
             }
         }
 
@@ -95,6 +98,23 @@ namespace ServiceCenter.GUI
                 MainFClient f = new();
                 f.Show();
                 Close();
+            }
+        }
+
+        private bool checkInputs()
+        {
+            if(richTextBox1.TextLength > 1 && richTextBox8.TextLength > 1
+                && richTextBox9.TextLength > 1 && maskedTextBox1.TextLength == 11
+                && maskedTextBox2.TextLength == 10 && richTextBox5.TextLength > 1
+                && richTextBox6.TextLength > 1 && comboBox1.SelectedIndex != 0
+                && dataGridView1.RowCount > 0)
+            {
+                return true;
+            }
+            else
+            {
+                label12.Visible = true;
+                return false;
             }
         }
     }

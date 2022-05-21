@@ -73,6 +73,28 @@ namespace ServiceCenter.Database
             return staff;
         }
 
+        public List<Staff> getMasterList()
+        {
+            List<Staff> masters = new List<Staff>();
+            connect();
+            cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Staff WHERE role = 'Мастер'";
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    int id = int.Parse(reader.GetValue(0).ToString());
+                    string name = reader.GetValue(1).ToString();
+                    string surname = reader.GetValue(2).ToString();
+                    string role = reader.GetValue(3).ToString();
+                    masters.Add(new Staff(id, name, surname, role));
+                }
+            }
+            close();
+            return masters;
+        }
+
         public Service getService(int id)
         {
             Service service = new Service(id, "", "", 0);
@@ -251,7 +273,7 @@ namespace ServiceCenter.Database
                 Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
                 while (reader.Read())
                 {
-
+                    application.id = int.Parse(reader.GetValue(0).ToString());
                     application.date = DateTime.Parse(reader.GetValue(1).ToString());
                     client_id = int.Parse(reader.GetValue(2).ToString());
                     application.status = reader.GetValue(3).ToString();
@@ -267,19 +289,32 @@ namespace ServiceCenter.Database
             return applications;
         }
 
-        public DataTable getActiveAppList()
+        public List<Application> getActiveAppList()
         {
             List<Application> applications = new List<Application>();
+            int client_id;
             int order_id;
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT Date FROM Applications INNER JOIN  WHERE Status = 'Согласована'";
-            order_id = int.Parse(reader.GetValue(5).ToString());
+            cmd.CommandText = "SELECT * FROM Applications WHERE status = 'Согласована'";
             reader = cmd.ExecuteReader();
-            DataTable dt = new();
-            dt.Load(reader);
+            if (reader.HasRows)
+            {
+                Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
+                while (reader.Read())
+                {
+                    application.id = int.Parse(reader.GetValue(0).ToString());
+                    application.date = DateTime.Parse(reader.GetValue(1).ToString());
+                    client_id = int.Parse(reader.GetValue(2).ToString());
+                    application.status = reader.GetValue(3).ToString();
+                    order_id = int.Parse(reader.GetValue(5).ToString());
+                    application.client = getClient(client_id);
+                    application.order = getOrder(order_id);
+                    applications.Add(application);
+                }
+            }
             close();
-            return dt;
+            return applications;
         }
 
         public int addClient(Client client)
@@ -344,7 +379,7 @@ namespace ServiceCenter.Database
 
         public void addOrderService(Order order)
         {
-            foreach(Service it in order.services)
+            foreach (Service it in order.services)
             {
                 connect();
                 cmd = conn.CreateCommand();

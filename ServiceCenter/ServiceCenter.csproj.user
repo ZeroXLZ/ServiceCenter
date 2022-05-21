@@ -13,9 +13,6 @@
     <Compile Update="GUI\AuthorizationF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\ConfirmF.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="GUI\MainFClient.cs">
       <SubType>Form</SubType>
     </Compile>

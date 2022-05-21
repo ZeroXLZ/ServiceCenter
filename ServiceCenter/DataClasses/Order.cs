@@ -2,7 +2,7 @@
 
 namespace ServiceCenter.DataClasses
 {
-    class Order
+    public class Order
     {
         public int id;
         public float cost;

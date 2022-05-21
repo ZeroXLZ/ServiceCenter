@@ -2,7 +2,7 @@
 
 namespace ServiceCenter.DataClasses
 {
-    class Device
+    public class Device
     {
         public int id;
         public string type;

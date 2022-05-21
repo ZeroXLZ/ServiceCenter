@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCenter.DataClasses
 {
-    class Staff
+    public class Staff
     {
         public int id;
         public string name;

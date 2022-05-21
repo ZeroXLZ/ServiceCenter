@@ -2,7 +2,7 @@
 
 namespace ServiceCenter.DataClasses
 {
-    class Application
+    public class Application
     {
         public int id;
         public DateTime date;
