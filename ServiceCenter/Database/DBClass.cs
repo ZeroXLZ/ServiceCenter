@@ -337,6 +337,11 @@ namespace ServiceCenter.Database
 
         public int addDevice(Device device)
         {
+            string comps = "";
+            foreach(string it in device.components)
+            {
+                comps += it + "\n";
+            }
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = $"INSERT INTO Devices (Type, Model, Components) VALUES ('{device.type}', " +
@@ -373,17 +378,17 @@ namespace ServiceCenter.Database
             id2 = int.Parse(reader.GetValue(0).ToString());
 
             close();
-            addOrderService(order);
+            addOrderService(order, id2);
             return id2;
         }
 
-        public void addOrderService(Order order)
+        public void addOrderService(Order order, int id2)
         {
             foreach (Service it in order.services)
             {
                 connect();
                 cmd = conn.CreateCommand();
-                cmd.CommandText = $"INSERT INTO AppServices (id_order, id_service) VALUES ({order.id}, {it.id})";
+                cmd.CommandText = $"INSERT INTO AppServices (id_order, id_service) VALUES ({id2}, {it.id})";
                 cmd.ExecuteNonQuery();
                 close();
             }

@@ -104,8 +104,8 @@ namespace ServiceCenter.GUI
         private bool checkInputs()
         {
             if(richTextBox1.TextLength > 1 && richTextBox8.TextLength > 1
-                && richTextBox9.TextLength > 1 && maskedTextBox1.TextLength == 11
-                && maskedTextBox2.TextLength == 10 && richTextBox5.TextLength > 1
+                && richTextBox9.TextLength > 1 && maskedTextBox1.TextLength == 15
+                && maskedTextBox2.TextLength == 11 && richTextBox5.TextLength > 1
                 && richTextBox6.TextLength > 1 && comboBox1.SelectedIndex != 0
                 && dataGridView1.RowCount > 0)
             {

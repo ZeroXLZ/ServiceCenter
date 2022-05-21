@@ -61,7 +61,7 @@ namespace ServiceCenter
                 bool auth = new Logic.Authorization().authorize(richTextBox1.Text, richTextBox2.Text);
                 if (auth)
                 {
-                    Close();
+                    Hide();
                 }
                 else
                 {
@@ -70,8 +70,8 @@ namespace ServiceCenter
             }
             else
             {
+                Hide();
                 new Logic.Authorization().authorize();
-                Close();
             }
         }
 
