@@ -321,6 +321,60 @@ namespace ServiceCenter.Database
             return applications;
         }
 
+        public List<Application> getFilteredAppList(string filters)
+        {
+            List<Application> applications = new List<Application>();
+
+            int client_id;
+            int staff_id;
+            int order_id;
+            connect();
+            cmd = conn.CreateCommand();
+            if(filters.Length == 0)
+            {
+                cmd.CommandText = "SELECT * FROM Applications";
+            }
+            else if(filters.Contains("Staff.Surname"))
+            {
+                cmd.CommandText = "SELECT * FROM Applications " +
+                "JOIN Clients ON Applications.id_client = Clients.id " +
+                "JOIN Orders ON Applications.id_order = Orders.id " +
+                "JOIN Staff ON Applications.id_master = Staff.id " +
+                "WHERE " + filters;
+            }
+            else
+            {
+                cmd.CommandText = "SELECT * FROM Applications " +
+                "JOIN Clients ON Applications.id_client = Clients.id " +
+                "JOIN Orders ON Applications.id_order = Orders.id " +
+                "WHERE " + filters;
+            }
+            
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
+                    application.id = int.Parse(reader.GetValue(0).ToString());
+                    application.date = DateTime.Parse(reader.GetValue(1).ToString());
+                    client_id = int.Parse(reader.GetValue(2).ToString());
+                    application.status = reader.GetValue(3).ToString();
+                    if (!reader.GetValue(4).ToString().Equals(""))
+                    {
+                        staff_id = int.Parse(reader.GetValue(4).ToString());
+                        application.master = getStaff(staff_id);
+                    }
+                    order_id = int.Parse(reader.GetValue(5).ToString());
+                    application.client = getClient(client_id);
+                    application.order = getOrder(order_id);
+                    applications.Add(application);
+                }
+            }
+            close();
+            return applications;
+        }
+
         public List<Application> getActiveAppList(Staff master)
         {
             List<Application> applications = new List<Application>();
