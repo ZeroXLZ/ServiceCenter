@@ -23,10 +23,10 @@ namespace ServiceCenter.Database
         public void close()
         {
             if (!reader.IsClosed)
-            {
                 reader.Close();
-            }
-            conn.Close();
+
+            if (!conn.State.ToString().Equals("Closed"))
+                conn.Close();
         }
 
         public Staff getStaff(string login, string password)
@@ -55,21 +55,23 @@ namespace ServiceCenter.Database
         public Staff getStaff(int id)
         {
             Staff staff = new Staff(id, "", "", "");
+            SqliteDataReader reader2;
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT id, Name, Surname, Role FROM Staff WHERE id = " + id;
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            reader2 = cmd.ExecuteReader();
+            if (reader2.HasRows)
             {
                 while (reader.Read())
                 {
-                    staff.name = reader.GetValue(1).ToString();
-                    staff.surname = reader.GetValue(2).ToString();
-                    staff.role = reader.GetValue(3).ToString();
+                    staff.name = reader2.GetValue(1).ToString();
+                    staff.surname = reader2.GetValue(2).ToString();
+                    staff.role = reader2.GetValue(3).ToString();
                 }
             }
 
-            close();
+            reader2.Close();
+            conn.Close();
             return staff;
         }
 
@@ -118,26 +120,27 @@ namespace ServiceCenter.Database
         public List<Service> getServicesOfOrder(int id)
         {
             List<Service> services = new List<Service>();
-
+            SqliteDataReader reader2;
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT Services.id, Name, Description, Price FROM AppServices INNER JOIN " +
                 "Services ON AppServices.id_service = Services.id " +
                 "WHERE id_order = " + id;
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            reader2 = cmd.ExecuteReader();
+            if (reader2.HasRows)
             {
-                Service service = new Service(0, "", "", 0);
-                while (reader.Read())
+                while (reader2.Read())
                 {
-                    service.id = int.Parse(reader.GetValue(0).ToString());
-                    service.name = reader.GetValue(1).ToString();
-                    service.description = reader.GetValue(2).ToString();
-                    service.price = float.Parse(reader.GetValue(3).ToString());
+                    Service service = new Service(0, "", "", 0);
+                    service.id = int.Parse(reader2.GetValue(0).ToString());
+                    service.name = reader2.GetValue(1).ToString();
+                    service.description = reader2.GetValue(2).ToString();
+                    service.price = float.Parse(reader2.GetValue(3).ToString());
                     services.Add(service);
                 }
             }
-            close();
+            reader2.Close();
+            conn.Close();
 
             return services;
         }
@@ -153,11 +156,12 @@ namespace ServiceCenter.Database
             {
                 while (reader.Read())
                 {
-                    int id = int.Parse(reader.GetValue(0).ToString());
-                    string name = reader.GetValue(1).ToString();
-                    string description = reader.GetValue(2).ToString();
-                    float price = float.Parse(reader.GetValue(3).ToString());
-                    services.Add(new Service(id, name, description, price));
+                    Service s = new Service();
+                    s.id = int.Parse(reader.GetValue(0).ToString());
+                    s.name = reader.GetValue(1).ToString();
+                    s.description = reader.GetValue(2).ToString();
+                    s.price = float.Parse(reader.GetValue(3).ToString());
+                    services.Add(s);
                 }
             }
             close();
@@ -167,42 +171,47 @@ namespace ServiceCenter.Database
         public Client getClient(int id)
         {
             Client client = new Client(id, "", "", "", "", "");
+            SqliteDataReader reader2;
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT * FROM Clients WHERE id = " + id;
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            reader2 = cmd.ExecuteReader();
+            if (reader2.HasRows)
             {
-                while (reader.Read())
+                while (reader2.Read())
                 {
-                    client.name = reader.GetValue(1).ToString();
-                    client.surname = reader.GetValue(2).ToString();
-                    client.patronymic = reader.GetValue(3).ToString();
-                    client.phoneNum = reader.GetValue(4).ToString();
-                    client.passport = reader.GetValue(5).ToString();
+                    client.name = reader2.GetValue(1).ToString();
+                    client.surname = reader2.GetValue(2).ToString();
+                    client.patronymic = reader2.GetValue(3).ToString();
+                    client.phoneNum = reader2.GetValue(4).ToString();
+                    client.passport = reader2.GetValue(5).ToString();
                 }
             }
-            close();
+            reader2.Close();
+            conn.Close();
             return client;
         }
 
         public Device getDevice(int id)
         {
-            Device device = new Device(0, "", "", new List<string>(0));
+            Device device = new Device(id, "", "", new List<string>(0));
+            SqliteDataReader reader2;
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT * FROM Devices WHERE id = " + id;
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            reader2 = cmd.ExecuteReader();
+            if (reader2.HasRows)
             {
-                while (reader.Read())
+                while (reader2.Read())
                 {
-                    device.type = reader.GetValue(1).ToString();
-                    device.model = reader.GetValue(2).ToString();
-                    device.components = reader.GetValue(3).ToString().Split(",").ToList<string>();
+
+                    device.type = reader2.GetValue(1).ToString();
+                    device.model = reader2.GetValue(2).ToString();
+                    device.components = reader2.GetValue(3).ToString().Split(",").ToList<string>();
                 }
             }
-            close();
+            reader2.Close();
+            conn.Close();
             return device;
         }
 
@@ -210,20 +219,22 @@ namespace ServiceCenter.Database
         {
             Order order = new Order(id, 0, "", new Device(0, "", "", new List<string>(0)), new List<Service>(0));
             int id_device = -1;
+            SqliteDataReader reader2;
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT * FROM Orders WHERE id = " + id;
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            reader2 = cmd.ExecuteReader();
+            if (reader2.HasRows)
             {
-                while (reader.Read())
+                while (reader2.Read())
                 {
-                    order.cost = float.Parse(reader.GetValue(1).ToString());
-                    order.description = reader.GetValue(2).ToString();
-                    id_device = int.Parse(reader.GetValue(3).ToString());
+                    order.cost = float.Parse(reader2.GetValue(1).ToString());
+                    order.description = reader2.GetValue(2).ToString();
+                    id_device = int.Parse(reader2.GetValue(3).ToString());
                 }
             }
-            close();
+            reader2.Close();
+            conn.Close();
             order.device = getDevice(id_device);
             order.services = getServicesOfOrder(id);
             return order;
@@ -270,17 +281,20 @@ namespace ServiceCenter.Database
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
                 while (reader.Read())
                 {
+                    Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
                     application.id = int.Parse(reader.GetValue(0).ToString());
                     application.date = DateTime.Parse(reader.GetValue(1).ToString());
                     client_id = int.Parse(reader.GetValue(2).ToString());
                     application.status = reader.GetValue(3).ToString();
-                    staff_id = int.Parse(reader.GetValue(4).ToString());
+                    if (!reader.GetValue(4).ToString().Equals(""))
+                    {
+                        staff_id = int.Parse(reader.GetValue(4).ToString());
+                        application.master = getStaff(staff_id);
+                    }     
                     order_id = int.Parse(reader.GetValue(5).ToString());
                     application.client = getClient(client_id);
-                    application.master = getStaff(staff_id);
                     application.order = getOrder(order_id);
                     applications.Add(application);
                 }
@@ -300,9 +314,9 @@ namespace ServiceCenter.Database
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
                 while (reader.Read())
                 {
+                    Application application = new Application(-1, new DateTime(2000, 1, 1), new Client(), "", new Staff(), new Order());
                     application.id = int.Parse(reader.GetValue(0).ToString());
                     application.date = DateTime.Parse(reader.GetValue(1).ToString());
                     client_id = int.Parse(reader.GetValue(2).ToString());
@@ -345,7 +359,7 @@ namespace ServiceCenter.Database
             connect();
             cmd = conn.CreateCommand();
             cmd.CommandText = $"INSERT INTO Devices (Type, Model, Components) VALUES ('{device.type}', " +
-                $"'{device.model}', '{device.components}');";
+                $"'{device.model}', '{comps}');";
 
             int number = cmd.ExecuteNonQuery();
             Console.WriteLine($"В таблицу Devices добавлено объектов: {number}");
@@ -414,43 +428,53 @@ namespace ServiceCenter.Database
             cmd = conn.CreateCommand();
             cmd.CommandText = $"UPDATE Clients SET Name = '{client.name}', Surname = '{client.surname}', Patronymic = '{client.patronymic}'," +
                 $"PhoneNum = '{client.phoneNum}', Passport = '{client.passport}' WHERE id = {client.id}";
-
+            cmd.ExecuteNonQuery();
             close();
-            int number = cmd.ExecuteNonQuery();
-            Console.WriteLine($"Обновлено объектов: {number}");
         }
 
         public void editDevice(Device device)
         {
+            string comps = "";
+            foreach (string it in device.components)
+            {
+                comps += it + "\n";
+            }
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE Devices SET Type = '{device.type}', Model = '{device.model}', Components = '{device.components}' WHERE WHERE id = {device.id}";
-
+            cmd.CommandText = $"UPDATE Devices SET Type = '{device.type}', Model = '{device.model}', Components = '{comps}' WHERE id = {device.id}";
+            cmd.ExecuteNonQuery();
             close();
-            int number = cmd.ExecuteNonQuery();
-            Console.WriteLine($"Обновлено объектов: {number}");
         }
 
         public void editOrder(Order order)
         {
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE Orders SET Cost = {order.cost}, Description = '{order.description}', id_device = {order.device.id} WHERE WHERE id = {order.id}";
-
+            cmd.CommandText = $"UPDATE Orders SET Cost = {order.cost}, Description = '{order.description}', id_device = {order.device.id} WHERE id = {order.id}";
+            cmd.ExecuteNonQuery();
             close();
-            int number = cmd.ExecuteNonQuery();
-            Console.WriteLine($"Обновлено объектов: {number}");
         }
 
         public void editApp(Application application)
         {
+            editClient(application.client);
+            editDevice(application.order.device);
+            editOrder(application.order);
+            string s = "";
+            if(application.master.id == 0)
+            {
+                s = "null";
+            }
+            else
+            {
+                s = application.master.id.ToString();
+            }
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE Applications SET Date = '{application.date}', id_client = {application.client.id}, status = {application.status}, id_master = {application.master.id}, id_order = {application.order.id} WHERE WHERE id = {application.id}";
-
+            cmd.CommandText = $"UPDATE Applications SET Date = '{application.date}', id_client = {application.client.id}," +
+                $"status = '{application.status}', id_master = {s}, id_order = {application.order.id} WHERE id = {application.id}";
+            cmd.ExecuteNonQuery();
             close();
-            int number = cmd.ExecuteNonQuery();
-            Console.WriteLine($"Обновлено объектов: {number}");
         }
     }
 }

@@ -8,10 +8,10 @@ namespace ServiceCenter.DataClasses
 {
     public class Staff
     {
-        public int id;
-        public string name;
-        public string surname;
-        public string role;
+        public int id { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public string role { get; set; }
 
         public Staff(int id, string name, string surname, string role)
         {

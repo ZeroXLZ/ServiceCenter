@@ -17,13 +17,13 @@ namespace ServiceCenter.Logic
             Staff staff = db.getStaff(login, password);
             if (staff.id != -1)
             {
-                if (staff.role.Equals("Manager"))
+                if (staff.role.Equals("Менеджер"))
                 {
                     MainFManager f = new(staff);
                     f.Show();
                     return true;
                 }
-                else if (staff.role.Equals("Master"))
+                else if (staff.role.Equals("Мастер"))
                 {
                     MainFMaster f = new(staff);
                     f.Show();

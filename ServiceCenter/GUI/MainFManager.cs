@@ -18,19 +18,42 @@ namespace ServiceCenter.GUI
         public Staff managerS;
         public MainFManager(Staff managerS)
         {
-            
+
             InitializeComponent();
             this.managerS = managerS;
             setManager();
             MainManager manager = new();
             apps = manager.getApps();
-            dataGridView1.DataSource = apps;
+
+            foreach (DataClasses.Application it in apps)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["id"].Value = it.id;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["date"].Value = it.date;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["fio"].Value = it.client.surname + " " + it.client.name + " " + it.client.patronymic;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["master"].Value = it.master.surname;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["cost"].Value = it.order.cost;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["type"].Value = it.order.device.type;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["status"].Value = it.status;
+            }
             label2.Text += dataGridView1.RowCount;
         }
 
         public void setManager()
         {
             label1.Text += managerS.surname + " " + managerS.name;
+        }
+
+        private DataClasses.Application getAppFromGrid(int id)
+        {
+            foreach (DataClasses.Application it in apps)
+            {
+                if(it.id == id)
+                {
+                    return it;
+                }
+            }
+            return new DataClasses.Application();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,6 +91,20 @@ namespace ServiceCenter.GUI
             AuthorizationF a = new();
             a.Show();
             Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                DataClasses.Application application = getAppFromGrid(int.Parse(dataGridView1[e.ColumnIndex-1, e.RowIndex].Value.ToString()));
+                Close();
+                AppEditF f = new(application, managerS);
+                f.Show();
+            }
         }
     }
 }
