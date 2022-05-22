@@ -80,7 +80,7 @@ namespace ServiceCenter
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(130, 25);
             this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "smirnova@mail.ru";
+            this.richTextBox1.Text = "corneev@mail.ru";
             // 
             // richTextBox2
             // 
@@ -89,7 +89,7 @@ namespace ServiceCenter
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(130, 25);
             this.richTextBox2.TabIndex = 4;
-            this.richTextBox2.Text = "12345AA";
+            this.richTextBox2.Text = "12345AB";
             // 
             // button1
             // 

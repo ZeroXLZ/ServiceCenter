@@ -16,30 +16,65 @@ namespace ServiceCenter.GUI
     {
         public Staff master;
         public DataClasses.Application app;
-        public OrderInfoF(Staff master, DataClasses.Application app)
+
+        public OrderInfoF(Staff master, DataClasses.Application appl)
         {
             InitializeComponent();
             this.master = master;
-            this.app = app;
-            richTextBox1.Text = app.client.surname + " " + app.client.name + " " + app.client.patronymic;
-            richTextBox2.Text = app.date.Date.ToShortDateString();
-            richTextBox3.Text = app.client.phoneNum;
-            richTextBox4.Text = app.order.device.type;
-            richTextBox5.Text = app.order.device.model;
-            foreach (string str in app.order.device.components)
+            setMaster();
+            this.app = appl;
+            richTextBox1.Text = appl.client.surname + " " + appl.client.name + " " + appl.client.patronymic;
+            richTextBox2.Text = appl.date.Date.ToShortDateString();
+            richTextBox3.Text = appl.client.phoneNum;
+            richTextBox4.Text = appl.order.device.type;
+            richTextBox5.Text = appl.order.device.model;
+            foreach (string str in appl.order.device.components)
             {
-                richTextBox6.Text += str + "\n";
+                richTextBox6.Text += str;
             }
-            dataGridView1.DataSource = app.order.services;
-            richTextBox7.Text = app.order.description;
+            richTextBox7.Text = appl.order.description;
+
+            foreach (Service it in appl.order.services)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["id"].Value = it.id;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["name"].Value = it.name;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["description"].Value = it.description;
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["price"].Value = it.price;
+            }
+            countSum();
+
+            if(app.master.id == master.id)
+            {
+                button2.Enabled = false;
+            }
+        }
+
+        private void countSum()
+        {
+            double sum = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; ++i)
+            {
+                sum += Convert.ToDouble(dataGridView1.Rows[i].Cells["price"].Value);
+            }
+
+            richTextBox8.Text = sum + " руб.";
+        }
+
+        public void setMaster()
+        {
+            label1.Text += master.surname + " " + master.name;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Вы хотите принять эту заявку?", "Подтверждение", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                OrderInfo f = new();
-                f.takeOrder(app, master);
+                OrderInfo o = new();
+                o.takeOrder(app, master);
+                MainFMaster f = new(master);
+                f.Show();
+                Close();
             }
         }
 

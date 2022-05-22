@@ -52,9 +52,9 @@ namespace ServiceCenter.GUI
             comboBox3.DataSource = listSt;
             comboBox3.DisplayMember = "surname";
 
-            foreach (object it in comboBox3.Items)
+            foreach (Staff it in comboBox3.Items)
             {
-                if (application.master.surname == it.ToString())
+                if (application.master.surname == it.surname)
                 {
                     comboBox3.SelectedItem = it;
                 }

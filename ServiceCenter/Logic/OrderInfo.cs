@@ -14,6 +14,7 @@ namespace ServiceCenter.Logic
         {
             DBClass db = new DBClass();
             app.master = master;
+            app.status = "Диагностика";
             db.editApp(app);
         }
     }

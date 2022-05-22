@@ -22,11 +22,14 @@ namespace ServiceCenter.Database
         }
         public void close()
         {
-            if (!reader.IsClosed)
-                reader.Close();
+            if (reader != null)
+            {
+                if (!reader.IsClosed)
+                    reader.Close();
 
-            if (!conn.State.ToString().Equals("Closed"))
-                conn.Close();
+                if (!conn.State.ToString().Equals("Closed"))
+                    conn.Close();
+            }
         }
 
         public Staff getStaff(string login, string password)
@@ -62,7 +65,7 @@ namespace ServiceCenter.Database
             reader2 = cmd.ExecuteReader();
             if (reader2.HasRows)
             {
-                while (reader.Read())
+                while (reader2.Read())
                 {
                     staff.name = reader2.GetValue(1).ToString();
                     staff.surname = reader2.GetValue(2).ToString();
@@ -95,6 +98,21 @@ namespace ServiceCenter.Database
             }
             close();
             return masters;
+        }
+
+        public bool checkMaster(Staff master)
+        {
+            connect();
+            cmd = conn.CreateCommand();
+            cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id}";
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                close();
+                return true;
+            }
+            close();
+            return false;
         }
 
         public Service getService(int id)
@@ -292,7 +310,7 @@ namespace ServiceCenter.Database
                     {
                         staff_id = int.Parse(reader.GetValue(4).ToString());
                         application.master = getStaff(staff_id);
-                    }     
+                    }
                     order_id = int.Parse(reader.GetValue(5).ToString());
                     application.client = getClient(client_id);
                     application.order = getOrder(order_id);
@@ -303,14 +321,22 @@ namespace ServiceCenter.Database
             return applications;
         }
 
-        public List<Application> getActiveAppList()
+        public List<Application> getActiveAppList(Staff master)
         {
             List<Application> applications = new List<Application>();
+            bool masterWork = checkMaster(master);
             int client_id;
             int order_id;
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT * FROM Applications WHERE status = 'Согласована'";
+            if (masterWork)
+            {
+                cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id}";
+            }
+            else
+            {
+                cmd.CommandText = "SELECT * FROM Applications WHERE status = 'Согласована'";
+            }
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
@@ -324,6 +350,10 @@ namespace ServiceCenter.Database
                     order_id = int.Parse(reader.GetValue(5).ToString());
                     application.client = getClient(client_id);
                     application.order = getOrder(order_id);
+                    if (masterWork)
+                    {
+                        application.master = master;
+                    }
                     applications.Add(application);
                 }
             }
@@ -352,7 +382,7 @@ namespace ServiceCenter.Database
         public int addDevice(Device device)
         {
             string comps = "";
-            foreach(string it in device.components)
+            foreach (string it in device.components)
             {
                 comps += it + "\n";
             }
@@ -461,7 +491,7 @@ namespace ServiceCenter.Database
             editDevice(application.order.device);
             editOrder(application.order);
             string s = "";
-            if(application.master.id == 0)
+            if (application.master.id == 0)
             {
                 s = "null";
             }
