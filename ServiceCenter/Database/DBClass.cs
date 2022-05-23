@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceCenter.DataClasses;
 using System.Data;
+using System.Diagnostics;
 
 namespace ServiceCenter.Database
 {
@@ -17,7 +18,9 @@ namespace ServiceCenter.Database
 
         public void connect()
         {
-            conn = new SqliteConnection("Data Source=D:\\Systemf\\Desktop\\Course work\\DB\\services_db.db");
+            string path = "Data Source=.\\DB\\services_db.db";
+            //conn = new SqliteConnection("Data Source=D:\\Systemf\\Desktop\\Course work\\DB\\services_db.db");
+            conn = new SqliteConnection(path);
             conn.Open();
         }
         public void close()

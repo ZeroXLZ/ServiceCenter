@@ -42,3 +42,4 @@ D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\runtimes\w
 D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.csproj.CopyComplete
+D:\Systemf\Desktop\Course work\ServiceCenter\bin\Debug\net5.0-windows\DB\services_db.db

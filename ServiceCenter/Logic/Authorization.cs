@@ -15,7 +15,7 @@ namespace ServiceCenter.Logic
         {
             DBClass db = new DBClass();
             Staff staff = db.getStaff(login, password);
-            if (staff.id != -1)
+            if (staff.id != 0 || staff.role != null)
             {
                 if (staff.role.Equals("Менеджер"))
                 {

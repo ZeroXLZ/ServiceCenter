@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DB\services_db.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
