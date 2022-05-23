@@ -183,9 +183,9 @@ namespace ServiceCenter.GUI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(214, 34);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 15);
+            this.label4.Size = new System.Drawing.Size(46, 15);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Клиент (Фамилия)";
+            this.label4.Text = "Клиент";
             // 
             // label5
             // 
@@ -193,9 +193,9 @@ namespace ServiceCenter.GUI
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(366, 34);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 15);
+            this.label5.Size = new System.Drawing.Size(48, 15);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Мастер (Фамилия)";
+            this.label5.Text = "Мастер";
             // 
             // label6
             // 
@@ -286,9 +286,9 @@ namespace ServiceCenter.GUI
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.Location = new System.Drawing.Point(610, 48);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 27);
+            this.button2.Size = new System.Drawing.Size(89, 45);
             this.button2.TabIndex = 17;
-            this.button2.Text = "Фильтровать";
+            this.button2.Text = "Получить заявки";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
