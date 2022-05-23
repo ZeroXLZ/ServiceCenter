@@ -107,12 +107,16 @@ namespace ServiceCenter.Database
         {
             connect();
             cmd = conn.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id}";
+            cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id} AND status <> 'Отказана' AND status <> 'Закрыта'";
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
                 close();
                 return true;
+            }
+            else
+            {
+
             }
             close();
             return false;
@@ -381,14 +385,15 @@ namespace ServiceCenter.Database
         public List<Application> getActiveAppList(Staff master)
         {
             List<Application> applications = new List<Application>();
-            bool masterWork = checkMaster(master);
+            
             int client_id;
             int order_id;
+            bool masterWork = checkMaster(master);
             connect();
             cmd = conn.CreateCommand();
             if (masterWork)
             {
-                cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id}";
+                cmd.CommandText = $"SELECT * FROM Applications WHERE id_master = {master.id} AND status <> 'Отказана' AND status <> 'Закрыта'";
             }
             else
             {

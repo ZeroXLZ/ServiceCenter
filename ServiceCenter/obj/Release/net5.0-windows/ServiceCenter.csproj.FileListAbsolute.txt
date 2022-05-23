@@ -42,3 +42,4 @@ D:\Systemf\Desktop\Course work\ServiceCenter\obj\Release\net5.0-windows\ref\Serv
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Release\net5.0-windows\ServiceCenter.pdb
 D:\Systemf\Desktop\Course work\ServiceCenter\obj\Release\net5.0-windows\ServiceCenter.genruntimeconfig.cache
 D:\Systemf\Desktop\Course work\ServiceCenter\bin\Release\net5.0-windows\DB\services_db.db
+D:\Systemf\Desktop\Course work\ServiceCenter\obj\Release\net5.0-windows\ServiceCenter.csproj.AssemblyReference.cache
