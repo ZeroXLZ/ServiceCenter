@@ -9,7 +9,7 @@ using ServiceCenter.GUI;
 
 namespace ServiceCenter.Logic
 {
-    class Authorization
+    public class Authorization
     {
         public bool authorize(string login, string password)
         {

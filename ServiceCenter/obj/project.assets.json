@@ -284,11 +284,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\ServiceCenter.csproj",
+      "projectUniqueName": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\ServiceCenter\\ServiceCenter.csproj",
       "projectName": "ServiceCenter",
-      "projectPath": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\ServiceCenter.csproj",
+      "projectPath": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\ServiceCenter\\ServiceCenter.csproj",
       "packagesPath": "C:\\Users\\micro\\.nuget\\packages\\",
-      "outputPath": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\obj\\",
+      "outputPath": "D:\\Systemf\\Desktop\\Course work\\ServiceCenter\\ServiceCenter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\micro\\AppData\\Roaming\\NuGet\\NuGet.Config",

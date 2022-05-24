@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace ServiceCenter.Database
 {
-    class DBClass
+    public class DBClass
     {
         public SqliteConnection conn;
         public SqliteCommand cmd;

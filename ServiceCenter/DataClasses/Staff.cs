@@ -25,5 +25,16 @@ namespace ServiceCenter.DataClasses
         {
 
         }
+
+        public override bool Equals(object other)
+        {
+            var toCompareWith = other as Staff;
+            if (toCompareWith == null)
+                return false;
+            return this.id == toCompareWith.id &&
+                this.name == toCompareWith.name &&
+                this.surname == toCompareWith.surname &&
+                this.role == toCompareWith.role;
+        }
     }
 }
