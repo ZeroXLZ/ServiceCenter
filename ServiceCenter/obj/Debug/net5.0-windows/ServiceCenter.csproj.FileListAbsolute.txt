@@ -87,4 +87,5 @@ D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-wind
 D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-windows\ref\ServiceCenter.dll
 D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.pdb
 D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.genruntimeconfig.cache
+D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.GUI.Tester.resources
 D:\Systemf\Desktop\Course work\ServiceCenter\ServiceCenter\obj\Debug\net5.0-windows\ServiceCenter.csproj.AssemblyReference.cache

@@ -75,6 +75,11 @@ namespace ServiceCenter
             }
         }
 
+        public void performClick(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)

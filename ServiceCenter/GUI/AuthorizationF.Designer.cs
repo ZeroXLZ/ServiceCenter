@@ -141,11 +141,11 @@ namespace ServiceCenter
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.RadioButton radioButton1;
+        public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.RichTextBox richTextBox2;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Label label2;
     }
 }
